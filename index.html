@@ -910,13 +910,49 @@ function validateForm(){
 function ce(inp,errId){inp.classList.remove('err');document.getElementById(errId).textContent=''}
 
 // SUBMIT
-function submit(){
-  document.getElementById('s5').classList.remove('active')
-  document.getElementById('success').classList.add('active')
-  document.getElementById('s-email').textContent=S.form.email
-  document.getElementById('s-ref').textContent=S._ref
-  document.querySelectorAll('.pline').forEach(l=>l.classList.add('done'))
-  document.getElementById('booking').scrollIntoView({behavior:'smooth',block:'start'})
+async function submit(){
+  const btn = document.querySelector('#s5 .btn-row .btn-p')
+  if(btn){ btn.disabled = true; btn.textContent = 'Sending…' }
+
+  const PLAN_NAMES_SHORT = {A:'Plan A — Tea Ceremony', B:'Plan B — Matcha Tasting', SET:'Set A+B — Full Experience'}
+  const d = S.date ? new Date(S.date+'T00:00:00').toLocaleDateString('en-US',{weekday:'short',year:'numeric',month:'short',day:'numeric'}) : '—'
+  const endMin = S.time ? addMin(S.time, S.plan==='SET'?40:20) : ''
+
+  const payload = {
+    _subject: `[chanoma] New Reservation — ${S.form.first} ${S.form.last}`,
+    name:     `${S.form.first} ${S.form.last}`,
+    email:    S.form.email,
+    phone:    S.form.phone || '—',
+    country:  S.form.country || '—',
+    plan:     PLAN_NAMES_SHORT[S.plan],
+    date:     d,
+    time:     S.time + (endMin ? ' – ' + endMin : ''),
+    guests:   `${S.guests} guest${S.guests>1?'s':''}`,
+    total:    `¥${(S.planPrice * S.guests).toLocaleString()}`,
+    ref:      S._ref,
+    requests: S.form.requests || '—',
+  }
+
+  try {
+    const res = await fetch('https://formspree.io/f/xlgappyd', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json', 'Accept':'application/json'},
+      body: JSON.stringify(payload)
+    })
+    if (!res.ok) throw new Error('Network error')
+
+    // SUCCESS
+    document.getElementById('s5').classList.remove('active')
+    document.getElementById('success').classList.add('active')
+    document.getElementById('s-email').textContent = S.form.email
+    document.getElementById('s-ref').textContent = S._ref
+    document.querySelectorAll('.pline').forEach(l=>l.classList.add('done'))
+    document.getElementById('booking').scrollIntoView({behavior:'smooth',block:'start'})
+
+  } catch(e) {
+    if(btn){ btn.disabled = false; btn.textContent = 'Confirm Reservation' }
+    alert('送信に失敗しました。時間をおいてもう一度お試しください。\nFailed to send. Please try again.')
+  }
 }
 function reset(){
   Object.assign(S,{step:1,plan:null,planPrice:0,date:null,time:null,guests:1,form:{},_ref:null})
