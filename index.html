@@ -819,12 +819,22 @@ function pickDate(el){
   chk2()
 }
 
-// TIME SLOTS
+// TIME SLOTS — state stored in localStorage
+const TIMES=['19:00','19:30','20:00','20:30','21:00','21:30','22:00','22:30']
+const STORAGE_KEY='chanoma_full_slots'
+
+function getFullSlots(){
+  try{ return JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]') }
+  catch(e){ return [] }
+}
+function saveFullSlots(arr){
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(arr))
+}
+
 function buildSlots(){
   const g=document.getElementById('slotGrid');g.innerHTML=''
-  const times=['19:00','19:30','20:00','20:30','21:00','21:30','22:00','22:30']
-  const fullSlots=['20:30']
-  times.forEach(t=>{
+  const fullSlots=getFullSlots()
+  TIMES.forEach(t=>{
     const el=document.createElement('div')
     const isFull=fullSlots.includes(t)
     el.className='slot'+(isFull?' full':'')
@@ -971,8 +981,65 @@ function reset(){
   goStep(1)
 }
 
+<!-- ADMIN PANEL -->
+<div id="admin-overlay" style="display:none;position:fixed;inset:0;background:rgba(28,26,22,0.7);z-index:9999;align-items:center;justify-content:center">
+  <div style="background:#fff;border-radius:4px;padding:2rem;max-width:380px;width:90%;position:relative">
+    <div style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:#1c1a16;margin-bottom:0.3rem">管理パネル</div>
+    <div style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:#8c8578;margin-bottom:1.5rem">Slot Management</div>
+
+    <div id="admin-slots" style="display:flex;flex-direction:column;gap:8px;margin-bottom:1.5rem"></div>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button onclick="adminSave()" style="background:#0b714e;color:white;border:none;padding:0.7rem 1.4rem;font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;border-radius:2px;flex:1">保存して閉じる</button>
+      <button onclick="closeAdmin()" style="background:none;border:1px solid #cfc8b8;color:#8c8578;padding:0.7rem 1rem;font-size:0.72rem;cursor:pointer;border-radius:2px">キャンセル</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ADMIN
+const ADMIN_PASS='chanoma2025'
+
+function openAdmin(){
+  const pw=prompt('管理者パスワードを入力してください')
+  if(pw!==ADMIN_PASS){alert('パスワードが違います');return}
+  const fullSlots=getFullSlots()
+  const container=document.getElementById('admin-slots')
+  container.innerHTML=''
+  TIMES.forEach(t=>{
+    const isFull=fullSlots.includes(t)
+    const row=document.createElement('div')
+    row.style.cssText='display:flex;justify-content:space-between;align-items:center;padding:0.6rem 0.8rem;border:1px solid #ede6d6;border-radius:2px;background:#faf8f4'
+    row.innerHTML=`
+      <span style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:#1c1a16">${t}</span>
+      <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:0.72rem;color:#8c8578;letter-spacing:0.1em;text-transform:uppercase">
+        <input type="checkbox" data-time="${t}" ${isFull?'checked':''} style="accent-color:#0b714e;width:16px;height:16px">
+        満席
+      </label>
+    `
+    container.appendChild(row)
+  })
+  const overlay=document.getElementById('admin-overlay')
+  overlay.style.display='flex'
+}
+
+function adminSave(){
+  const checked=[...document.querySelectorAll('#admin-slots input[type=checkbox]:checked')].map(c=>c.dataset.time)
+  saveFullSlots(checked)
+  buildSlots()
+  S.time=null
+  document.querySelectorAll('.slot.sel').forEach(e=>e.classList.remove('sel'))
+  chk2()
+  closeAdmin()
+}
+
+function closeAdmin(){
+  document.getElementById('admin-overlay').style.display='none'
+}
+
 initCal()
 buildSlots()
 </script>
 </body>
 </html>
+
