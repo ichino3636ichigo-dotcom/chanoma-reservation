@@ -198,12 +198,17 @@ const io = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){e.t
   {threshold:0.16, rootMargin:'0px 0px -8% 0px'});
 document.querySelectorAll('[data-r]').forEach(el=>io.observe(el));
 
-/* real photographs if present */
-document.querySelectorAll('[data-shot]').forEach(el=>{
+/* real photographs: mobile variant + lazy load */
+const SMALL = Math.min(innerWidth,innerHeight) <= 820;
+const lazyIO = new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting) return;
+  const el=e.target; lazyIO.unobserve(el);
   const img=new Image();
-  img.onload=()=>{ el.style.backgroundImage=`url(images/${el.dataset.shot}.jpg)`; el.removeAttribute('data-placeholder'); };
-  img.src=`images/${el.dataset.shot}.jpg`;
-});
+  img.onload=()=>{ el.style.backgroundImage=`url(${img.src})`; el.removeAttribute('data-placeholder'); };
+  img.onerror=()=>{ if(SMALL){ img.onerror=null; img.src=`images/${el.dataset.shot}.jpg`; } };
+  img.src=`images/${el.dataset.shot}${SMALL?'@sm':''}.jpg`;
+}), {rootMargin:'300px 0px'});
+document.querySelectorAll('[data-shot]').forEach(el=>lazyIO.observe(el));
 
 /* cursor */
 const cur=document.querySelector('.cur');
@@ -218,15 +223,16 @@ if(cur && !RM){
   (function loop(){ cx=lerp(cx,tx,.16);cy=lerp(cy,ty,.16); cur.style.transform=`translate(${cx}px,${cy}px) translate(-50%,-50%)`; requestAnimationFrame(loop); })();
 }
 
-/* gentle smooth scroll (respects reduced motion) */
-if(!RM){
+/* gentle smooth scroll — desktop only (mobile uses native scroll) */
+const isTouch = matchMedia('(pointer:coarse)').matches || 'ontouchstart' in window;
+if(!RM && !isTouch){
   let target=window.scrollY,current=target;
   const maxY=()=>document.documentElement.scrollHeight-innerHeight;
-  addEventListener('wheel',e=>{ e.preventDefault(); target=Math.min(maxY(),Math.max(0,target+e.deltaY*1.6)); },{passive:false});
+  addEventListener('wheel',e=>{ e.preventDefault(); target=Math.min(maxY(),Math.max(0,target+e.deltaY*2.0)); },{passive:false});
   let written=-1;
   (function frame(){
     if(written>=0 && Math.abs(window.scrollY-written)>2) target=current=window.scrollY;
-    current=lerp(current,target,0.14);
+    current=lerp(current,target,0.2);
     if(Math.abs(current-target)<0.4) current=target;
     window.scrollTo(0,current); written=window.scrollY;
     requestAnimationFrame(frame);

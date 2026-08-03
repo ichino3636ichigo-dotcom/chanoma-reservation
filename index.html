@@ -8,6 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Noto+Serif+JP:wght@200;300;400&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="images/01-takase-river-dusk@sm.jpg" media="(max-width:820px)">
+<link rel="preload" as="image" href="images/01-takase-river-dusk.jpg" media="(min-width:821px)">
 <style>
 /* ─────────────────────────────────────────────
    chanoma — one quiet hour
@@ -638,13 +640,15 @@ const clamp = (v,a=0,b=1)=>Math.min(b,Math.max(a,v));
 /* ── 0 · (language toggle removed — English only) ── */
 
 
-/* ── 1 · smooth scroll (Lenis-style: real scroll, so sticky survives) ── */
+/* ── 1 · smooth scroll (desktop only — mobile uses native scroll) ── */
 let target = window.scrollY, current = target, raf = false;
 const maxY = () => document.documentElement.scrollHeight - innerHeight;
-if (!RM) {
+const isTouch = matchMedia('(pointer:coarse)').matches || 'ontouchstart' in window;
+const SMOOTH = !RM && !isTouch;
+if (SMOOTH) {
   addEventListener('wheel', e => {
     e.preventDefault();
-    target = clamp(target + e.deltaY * 1.6, 0, maxY());
+    target = clamp(target + e.deltaY * 2.0, 0, maxY());
   }, { passive: false });
   addEventListener('resize', () => { target = current = window.scrollY; });
 }
@@ -662,10 +666,10 @@ let lastY = 0;
 
 function frame(){
   raf = true;
-  if (!RM) {
+  if (SMOOTH) {
     // If something other than us moved the page (keyboard, scrollbar, find-in-page), yield to it.
     if (written >= 0 && Math.abs(window.scrollY - written) > 2) target = current = window.scrollY;
-    current = lerp(current, target, 0.14);
+    current = lerp(current, target, 0.2);
     if (Math.abs(current - target) < 0.4) current = target;
     window.scrollTo(0, current);
     written = window.scrollY;
@@ -723,19 +727,24 @@ const io = new IntersectionObserver(es => {
 }, { threshold: 0.16, rootMargin: '0px 0px -8% 0px' });
 document.querySelectorAll('[data-r]').forEach(el => io.observe(el));
 
-/* ── 4 · real photographs, if they exist ── */
-let found = 0, tried = 0;
-const shots = document.querySelectorAll('[data-shot]');
-shots.forEach(el => {
+/* ── 4 · photographs: mobile variant + lazy load ── */
+document.body.classList.add('has-photos');           // real photos exist → hide plate captions
+const SMALL = Math.min(innerWidth, innerHeight) <= 820;  // phones/tablets get the lighter file
+const srcFor = (shot) => `images/${shot}${SMALL ? '@sm' : ''}.jpg`;
+function loadShot(el){
+  if (el.dataset.loaded) return;
+  el.dataset.loaded = '1';
   const img = new Image();
-  img.onload = () => {
-    el.style.backgroundImage = `url(images/${el.dataset.shot}.jpg)`;
-    el.removeAttribute('data-placeholder');
-    if (++found === shots.length) document.body.classList.add('has-photos');
-  };
-  img.onerror = () => { tried++; };
-  img.src = `images/${el.dataset.shot}.jpg`;
-});
+  img.onload = () => { el.style.backgroundImage = `url(${img.src})`; el.removeAttribute('data-placeholder'); };
+  img.onerror = () => { if (SMALL) { img.onerror = null; img.src = `images/${el.dataset.shot}.jpg`; } };
+  img.src = srcFor(el.dataset.shot);
+}
+const heroShot = document.getElementById('heroImg');
+if (heroShot) loadShot(heroShot);                     // hero loads immediately (above the fold)
+const lazyIO = new IntersectionObserver((es) => {
+  es.forEach(e => { if (e.isIntersecting) { loadShot(e.target); lazyIO.unobserve(e.target); } });
+}, { rootMargin: '300px 0px' });                      // begin loading a little before it enters view
+document.querySelectorAll('[data-shot]').forEach(el => { if (el !== heroShot) lazyIO.observe(el); });
 
 /* ── 5 · cursor ── */
 const cur = document.querySelector('.cur');
