@@ -68,7 +68,7 @@ const en = {
         client: "U Share",
         title: "Matcha & tea ceremony workshop “Shu-kyaku ittai — co-creation”",
         tags: ["Ryūrei (tables & chairs)", "Mainly in English", "Up to 10 people"],
-        body: "For residents of U Share, which runs selective international student residences that combine living and learning. Co-hosted with wellness advisor Masaya Higuchi. After a demonstration and an introduction to tea culture, participants enjoyed Japanese sweets and paired up to make matcha for each other.",
+        body: "For residents of U Share, which runs selective international student residences that combine living and learning. After a demonstration and an introduction to tea culture, participants enjoyed Japanese sweets and paired up to make matcha for each other.",
         photo: "ushare",
       },
       {
@@ -252,7 +252,7 @@ const ja: OffsiteCopy = {
         client: "U Share",
         title: "抹茶と茶道のワークショップ「主客一体」",
         tags: ["立礼（机と椅子）", "主に英語で進行", "最大10名"],
-        body: "住まいと学びが一体となった選抜型の国際学生寮を運営する U Share の寮生向けに、ウェルネスアドバイザーの Masaya Higuchi さんと共同開催。お点前と茶道文化のお話のあと、和菓子を味わい、二人一組でお互いに一服を点て合いました。",
+        body: "住まいと学びが一体となった選抜型の国際学生寮を運営する U Share の寮生向けに。お点前と茶道文化のお話のあと、和菓子を味わい、二人一組でお互いに一服を点て合いました。",
         photo: "ushare",
       },
       {
