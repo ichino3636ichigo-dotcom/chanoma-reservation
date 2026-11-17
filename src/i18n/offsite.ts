@@ -56,7 +56,7 @@ const en = {
       {
         date: "Nov 2026",
         place: "Tokyo",
-        client: "LiLi Inc.",
+        client: "A company in Tokyo",
         title: "Tea ceremony training for a company",
         tags: ["Tatami tea room", "Corporate training"],
         body: "In a tatami tea room, staff watched the host's temae and then whisked a bowl of matcha themselves.",
@@ -240,7 +240,7 @@ const ja: OffsiteCopy = {
       {
         date: "2026年11月",
         place: "東京",
-        client: "LiLi株式会社",
+        client: "都内の企業さま",
         title: "企業向け茶道研修",
         tags: ["茶室（座敷）", "企業研修"],
         body: "茶室で亭主のお点前を見学していただいたあと、皆さまにご自身で一服を点てていただきました。",
