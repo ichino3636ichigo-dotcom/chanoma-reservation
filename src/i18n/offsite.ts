@@ -100,16 +100,16 @@ const en = {
   flow: {
     eyebrow: "On the day",
     title: "How a session runs",
-    note: "A typical flow. Set-up and clearing away take at least an hour, so please allow time before and after. For events where people come and go, we can also run a tea booth instead.",
+    note: "A typical flow. Set-up and clearing away each take at least an hour, so please allow an hour before and after. For events where people come and go, we can also run a tea booth instead.",
     steps: [
-      { title: "Set-up", body: "We arrive early to set out the tools, boil water and arrange the space." },
+      { title: "Set-up (1 hour or more)", body: "We arrive early to set out the tools, boil water and arrange the space." },
       { title: "Welcome", body: "Introductions and a word about the day." },
       { title: "Lecture", body: "A short, friendly talk on the history and spirit of tea." },
       { title: "Temae", body: "The host prepares tea in the traditional manner while guests watch." },
       { title: "Sweets", body: "Guests enjoy a traditional Japanese sweet before their tea." },
       { title: "Whisk your own matcha", body: "Everyone makes a bowl of matcha themselves, with the host's help." },
       { title: "Photos", body: "Time for photos with the tools, the room and each other." },
-      { title: "Clearing away", body: "We pack up and leave the space as we found it." },
+      { title: "Clearing away (1 hour or more)", body: "We pack up and leave the space as we found it." },
     ],
   },
   terms: {
@@ -284,16 +284,16 @@ const ja: OffsiteCopy = {
   flow: {
     eyebrow: "当日の流れ",
     title: "出張の進め方",
-    note: "一般的な流れです。準備と片付けには最低1時間かかりますので、前後のお時間をご確保ください。人の出入りが自由なイベントでは、ブース形式での出展もできます。",
+    note: "一般的な流れです。準備と片付けにはそれぞれ最低1時間かかりますので、前後1時間ずつのお時間をご確保ください。人の出入りが自由なイベントでは、ブース形式での出展もできます。",
     steps: [
-      { title: "準備", body: "早めに伺い、道具の配置、お湯の用意、会場の準備をします。" },
+      { title: "準備（1時間〜）", body: "早めに伺い、道具の配置、お湯の用意、会場の準備をします。" },
       { title: "ご挨拶", body: "自己紹介と、この日についてのご挨拶。" },
       { title: "レクチャー", body: "茶道の歴史と心について、短くわかりやすくお話しします。" },
       { title: "お点前", body: "亭主がお点前でお茶を点てるところをご覧いただきます。" },
       { title: "お菓子", body: "お茶の前に、和菓子を召し上がっていただきます。" },
       { title: "抹茶点て体験", body: "亭主がそばでご案内しながら、皆さまご自身で一服を点てます。" },
       { title: "写真撮影", body: "道具や会場と一緒に、記念の写真をどうぞ。" },
-      { title: "片付け", body: "道具を片付け、会場を元の状態に戻します。" },
+      { title: "片付け（1時間〜）", body: "道具を片付け、会場を元の状態に戻します。" },
     ],
   },
   terms: {
