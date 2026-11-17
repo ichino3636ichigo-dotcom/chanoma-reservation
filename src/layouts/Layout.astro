@@ -1,0 +1,56 @@
+---
+import "../styles/global.css";
+import Cursor from "../components/Cursor";
+import { site, url } from "../data/site";
+
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href={url("/favicon.svg")} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Noto+Serif+JP:wght@200;300;400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+    <Cursor client:idle />
+    <slot />
+
+    <footer class="flex flex-wrap justify-between gap-4 px-gut py-12">
+      <p class="label">{site.name} · {site.city}</p>
+      <slot name="footer" />
+      <p class="label">{site.place}</p>
+    </footer>
+
+    <script>
+      // Fade elements marked with data-r in as they enter the viewport.
+      const io = new IntersectionObserver(
+        (entries) =>
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("in");
+              io.unobserve(e.target);
+            }
+          }),
+        { threshold: 0.16, rootMargin: "0px 0px -8% 0px" },
+      );
+      document.querySelectorAll("[data-r]").forEach((el) => io.observe(el));
+    </script>
+  </body>
+</html>
