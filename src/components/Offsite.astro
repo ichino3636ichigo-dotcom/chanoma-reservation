@@ -5,8 +5,21 @@ import { offsite } from "../i18n/offsite";
 import { copy, type Lang } from "../i18n/copy";
 import { path } from "../i18n/paths";
 import { site, instagramUrl, instagramDm } from "../data/site";
-import tins from "../assets/images/07-bowl-whisk.jpg";
-import kettle from "../assets/images/04c-chabana.jpg";
+import { getImage } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import Gallery, { type GalleryImage } from "./islands/Gallery";
+import ushareTalk from "../assets/images/offsite/ushare-talk.jpg";
+import ushareServing from "../assets/images/offsite/ushare-serving.jpg";
+import ushareBowl from "../assets/images/offsite/ushare-bowl.jpg";
+import ushareTray from "../assets/images/offsite/ushare-tray.jpg";
+import ushareHost from "../assets/images/offsite/ushare-host.jpg";
+import ushareFlowers from "../assets/images/offsite/ushare-flowers.jpg";
+import liliTearoom from "../assets/images/offsite/lili-tearoom.jpg";
+import liliGuests from "../assets/images/offsite/lili-guests.jpg";
+import liliTemae from "../assets/images/offsite/lili-temae.jpg";
+import liliTokonoma from "../assets/images/offsite/lili-tokonoma.jpg";
+import cuhkTalk from "../assets/images/offsite/cuhk-talk.jpg";
+import cuhkGroup from "../assets/images/offsite/cuhk-group.jpg";
 
 interface Props {
   lang: Lang;
@@ -15,6 +28,41 @@ const { lang } = Astro.props;
 const o = offsite[lang];
 const t = copy[lang];
 const marks = ["一", "二", "三"];
+const isJa = lang === "ja";
+
+// one photo per track-record entry
+const workPhotos: Record<string, { src: ImageMetadata; alt: string }> = {
+  lili: { src: liliTearoom, alt: isJa ? "LiLi株式会社の研修で、茶室でお点前をする亭主" : "The host performing temae in a tatami tea room for LiLi Inc." },
+  ushare: { src: ushareServing, alt: isJa ? "U Share のワークショップで参加者にお湯を注ぐ亭主" : "The host pouring hot water for participants at U Share" },
+  cuhk: { src: cuhkTalk, alt: isJa ? "香港中文大学で「清寂」について話す亭主" : "The host explaining sei-jaku (purity and tranquillity) at CUHK" },
+};
+
+// gallery from past sessions
+const shots: [ImageMetadata, string, string, string][] = [
+  [cuhkGroup, "香港中文大学のイベント参加者との集合写真", "Group photo with participants at The Chinese University of Hong Kong", "col-span-2 row-span-2"],
+  [ushareBowl, "U Share のワークショップで点てた一服", "A bowl of matcha whisked at the U Share workshop", "row-span-2"],
+  [liliTokonoma, "研修会場の茶室の床の間", "The alcove of the tea room used for the training", ""],
+  [ushareTray, "盆略点前の道具と干菓子", "Tray-style tea tools and dry sweets", ""],
+  [ushareHost, "ワークショップ前、立礼の席につく亭主", "The host seated at the ryūrei table before the workshop", "row-span-2"],
+  [liliTemae, "茶室でお点前をする亭主", "The host performing temae in the tea room", "row-span-2"],
+  [liliGuests, "お点前を見学する研修の参加者", "Training participants watching the temae", "row-span-2"],
+  [ushareFlowers, "ワークショップの机に生けた季節の花", "Seasonal flowers on the workshop tables", "row-span-2"],
+];
+const gallery: GalleryImage[] = await Promise.all(
+  shots.map(async ([src, ja, en, span]) => {
+    const thumb = await getImage({ src, widths: [400, 800], format: "webp" });
+    const full = await getImage({ src, widths: [800, 1200, 1600], format: "webp" });
+    return {
+      thumb: { src: thumb.src, srcset: thumb.srcSet.attribute },
+      full: { src: full.src, srcset: full.srcSet.attribute },
+      alt: isJa ? ja : en,
+      width: src.width,
+      height: src.height,
+      span,
+    };
+  }),
+);
+
 const h2 = "h-display mt-4 text-4xl md:text-[3.25rem] [:lang(ja)_&]:text-[2.25rem]";
 ---
 
@@ -37,7 +85,7 @@ const h2 = "h-display mt-4 text-4xl md:text-[3.25rem] [:lang(ja)_&]:text-[2.25re
           <a href="#formats" class="btn btn-ghost text-matcha">{o.hero.secondary}</a>
         </div>
       </div>
-      <Photo src={tins} alt={o.hero.photoAlt} priority sizes="(min-width: 1024px) 45vw, 100vw" class="aspect-[4/3] rounded-[1.25rem] lg:aspect-[4/5]" />
+      <Photo src={ushareTalk} alt={o.hero.photoAlt} priority sizes="(min-width: 1024px) 45vw, 100vw" class="aspect-[4/3] rounded-[1.25rem] lg:aspect-[5/4]" position="30% 50%" />
     </div>
   </section>
 
@@ -67,30 +115,60 @@ const h2 = "h-display mt-4 text-4xl md:text-[3.25rem] [:lang(ja)_&]:text-[2.25re
 
   <!-- ═══ TRACK RECORD ═══ -->
   <section id="work" class="py-20 md:py-28">
-    <div class="container-x grid gap-10 lg:grid-cols-[1fr_1.8fr] lg:gap-16">
-      <div data-reveal>
+    <div class="container-x">
+      <div class="max-w-2xl" data-reveal>
         <p class="eyebrow">{o.work.eyebrow}</p>
         <h2 class={h2}>{o.work.title}</h2>
       </div>
-      <ol class="divide-y divide-line border-y border-line" data-reveal>
+      <ol class="mt-12 grid gap-5 md:grid-cols-2" data-reveal>
         {
-          o.work.items.map((w) => (
-            <li class="grid gap-3 py-6 sm:grid-cols-[8rem_1fr] sm:gap-8">
-              <p class="text-sm text-muted tabular-nums">
-                <span class="block font-medium text-ink">{w.date}</span>
-                {w.place}
-              </p>
-              <div>
-                <h3 class="text-xl font-medium">{w.title}</h3>
-                <ul class="mt-2 flex flex-wrap gap-2">
-                  {w.tags.map((tag) => <li class="rounded-full bg-matcha-soft px-3 py-1 text-xs text-matcha-2">{tag}</li>)}
-                </ul>
-                <p class="mt-3 leading-relaxed text-ink-2">{w.body}</p>
-              </div>
-            </li>
-          ))
+          o.work.items.map((w) => {
+            const ph = w.photo ? workPhotos[w.photo] : undefined;
+            return (
+              <li class="flex flex-col overflow-hidden rounded-2xl border border-line bg-[#fffdf9]">
+                {ph ? (
+                  <Photo src={ph.src} alt={ph.alt} sizes="(min-width: 768px) 40vw, 100vw" class="aspect-[16/10]" position="50% 40%" />
+                ) : (
+                  <div class="grid aspect-[16/10] place-items-center bg-paper-2 font-mincho text-5xl text-matcha/30" aria-hidden="true">茶</div>
+                )}
+                <div class="flex flex-1 flex-col p-6">
+                  <p class="flex flex-wrap items-baseline gap-x-3 text-sm text-muted tabular-nums">
+                    <span class="font-medium text-ink">{w.date}</span>
+                    {w.place && <span>{w.place}</span>}
+                  </p>
+                  <h3 class="mt-2 text-xl font-medium">
+                    {w.client}
+                    <span class="mt-0.5 block text-base font-normal text-ink-2">{w.title}</span>
+                  </h3>
+                  <ul class="mt-3 flex flex-wrap gap-2">
+                    {w.tags.map((tag) => <li class="rounded-full bg-matcha-soft px-3 py-1 text-xs text-matcha-2">{tag}</li>)}
+                  </ul>
+                  <p class="mt-3 leading-relaxed text-ink-2">{w.body}</p>
+                </div>
+              </li>
+            );
+          })
         }
       </ol>
+
+      <div class="mt-10 grid gap-4 rounded-2xl bg-paper-2 p-6 sm:grid-cols-[12rem_1fr] sm:p-8" data-reveal>
+        <h3 class="font-medium">{o.work.backgroundTitle}</h3>
+        <ul class="space-y-3">
+          {
+            o.work.background.map((b) => (
+              <li class="grid gap-1 sm:grid-cols-[9rem_1fr] sm:gap-4">
+                <span class="text-sm text-muted tabular-nums">{b.date}</span>
+                <span>{b.body}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <h3 class="mt-16 text-lg font-medium" data-reveal>{o.work.galleryTitle}</h3>
+      <div class="mt-5" data-reveal>
+        <Gallery client:visible images={gallery} labels={t.room} />
+      </div>
     </div>
   </section>
 
@@ -101,7 +179,7 @@ const h2 = "h-display mt-4 text-4xl md:text-[3.25rem] [:lang(ja)_&]:text-[2.25re
         <p class="eyebrow">{o.flow.eyebrow}</p>
         <h2 class={h2}>{o.flow.title}</h2>
         <p class="mt-4 text-ink-2">{o.flow.note}</p>
-        <Photo src={kettle} alt={t.room.photos.kettle} sizes="(min-width: 1024px) 35vw, 100vw" class="mt-8 hidden aspect-[4/3] rounded-2xl lg:block" />
+        <Photo src={ushareTray} alt={isJa ? "盆略点前の道具と干菓子" : "Tray-style tea tools and dry sweets"} sizes="(min-width: 1024px) 35vw, 100vw" class="mt-8 hidden aspect-[4/3] rounded-2xl lg:block" />
       </div>
       <ol class="relative" data-reveal>
         {
