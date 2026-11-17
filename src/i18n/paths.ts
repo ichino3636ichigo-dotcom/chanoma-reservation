@@ -10,5 +10,5 @@ const raw: Record<Lang, Record<Page, string>> = {
 
 export const path = (lang: Lang, page: Page) => url(raw[lang][page]);
 export const absolute = (lang: Lang, page: Page) =>
-  new URL(path(lang, page), "https://ichino3636ichigo-dotcom.github.io").href;
+  new URL(path(lang, page), import.meta.env.SITE).href;
 export const other = (lang: Lang): Lang => (lang === "en" ? "ja" : "en");

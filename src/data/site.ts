@@ -4,7 +4,7 @@
 export const site = {
   name: "chanoma",
   nameJa: "茶乃間",
-  url: "https://ichino3636ichigo-dotcom.github.io/chanoma-reservation/",
+  url: "https://chanoma-kyoto.com/",
   instagram: "chanoma_teaceremony",
   email: "chanoma.teaceremony@gmail.com",
   maxGuests: 4,

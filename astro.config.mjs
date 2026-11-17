@@ -7,9 +7,8 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  // Published on GitHub Pages at https://ichino3636ichigo-dotcom.github.io/chanoma-reservation/
-  site: 'https://ichino3636ichigo-dotcom.github.io',
-  base: '/chanoma-reservation',
+  // Published on GitHub Pages under the custom domain https://chanoma-kyoto.com
+  site: 'https://chanoma-kyoto.com',
   // Emit about.html (not about/index.html) so the old /about.html link keeps working.
   build: { format: 'file' },
 

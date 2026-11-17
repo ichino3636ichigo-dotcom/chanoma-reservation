@@ -1,7 +1,7 @@
 # chanoma — Tea Ceremony & Matcha Experience in Kyoto
 
-- English: https://ichino3636ichigo-dotcom.github.io/chanoma-reservation/
-- 日本語: https://ichino3636ichigo-dotcom.github.io/chanoma-reservation/ja
+- English: https://chanoma-kyoto.com/
+- 日本語: https://chanoma-kyoto.com/ja
 
 Astro + Tailwind CSS + React で作ったサイトです。英語と日本語の2言語。
 
@@ -9,7 +9,7 @@ Astro + Tailwind CSS + React で作ったサイトです。英語と日本語の
 
 ```bash
 npm install
-npm run dev      # http://localhost:4321/chanoma-reservation/
+npm run dev      # http://localhost:4321/
 npm run build    # dist/ に出力
 ```
 
