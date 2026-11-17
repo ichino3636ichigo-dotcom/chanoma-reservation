@@ -67,7 +67,7 @@ const en = {
       },
       {
         date: "Jun 2025",
-        place: "",
+        place: "Hakuun-tei (白雲亭)",
         client: "Yokohama JC",
         title: "Tea ceremony workshop",
         tags: ["Ryūrei (tables & chairs)", "20 people"],
@@ -244,7 +244,7 @@ const ja: OffsiteCopy = {
       },
       {
         date: "2025年6月",
-        place: "",
+        place: "白雲亭",
         client: "横浜JC",
         title: "茶道体験ワークショップ",
         tags: ["立礼（机と椅子）", "20名"],
