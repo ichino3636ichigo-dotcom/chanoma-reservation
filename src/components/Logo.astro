@@ -1,0 +1,18 @@
+---
+// The chanoma mark: a hand-drawn bowl-like blob with three rising bubbles.
+interface Props {
+  class?: string;
+  title?: string;
+}
+const { class: cls = "size-8", title } = Astro.props;
+---
+
+<svg viewBox="0 0 100 100" class={cls} role={title ? "img" : undefined} aria-hidden={title ? undefined : "true"} aria-label={title}>
+  <path
+    fill="#114a37"
+    d="M52 8C72 9 90 24 92 46C94 68 82 88 60 92C40 96 22 90 12 72C3 56 8 40 18 26C27 14 38 7 52 8Z"
+  ></path>
+  <circle cx="77" cy="57" r="5.2" fill="#f6f2ea"></circle>
+  <circle cx="71.5" cy="66.5" r="3.6" fill="#f6f2ea"></circle>
+  <circle cx="66" cy="73.5" r="2.4" fill="#f6f2ea"></circle>
+</svg>

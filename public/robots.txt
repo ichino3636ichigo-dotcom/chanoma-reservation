@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ichino3636ichigo-dotcom.github.io/chanoma-reservation/sitemap-index.xml

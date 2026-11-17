@@ -1,62 +1,38 @@
-// All copy that appears in more than one place lives here.
+// Facts about chanoma that do not depend on language.
+// Prices, durations and contact details live here — change them in one place.
 
 export const site = {
   name: "chanoma",
   nameJa: "茶乃間",
-  place: "3F Nishimura Flower Shop",
-  city: "Kyoto",
+  url: "https://ichino3636ichigo-dotcom.github.io/chanoma-reservation/",
   instagram: "chanoma_teaceremony",
   email: "chanoma.teaceremony@gmail.com",
+  maxGuests: 4,
+  address: {
+    en: ["Nishimura Flower Shop 3F", "674-10 Kamiyacho, Nakagyo-ku", "Kyoto 604-8024, Japan"],
+    ja: ["〒604-8024", "京都府京都市中京区", "紙屋町674-10 西村花店 3F"],
+    // what we copy to the clipboard for taxi drivers
+    taxi: "〒604-8024 京都府京都市中京区紙屋町674-10 西村花店 3F",
+    mapsQuery: "西村花店 京都市中京区紙屋町674-10",
+  },
 };
 
-export const facts = ["By reservation only", "Max 4 guests", "Fully in English"];
+export type PlanId = "signature" | "ippuku" | "kikicha";
 
-export type Plan = {
-  name: string;
-  ja?: string;
-  price: string;
-  what: string;
-  duration: string;
-};
-
-export const plans: Plan[] = [
-  {
-    name: "Signature",
-    price: "¥9,000",
-    what: "Ippuku and Kikicha combined — the full chanoma experience.",
-    duration: "~45 min",
-  },
-  {
-    name: "Ippuku",
-    ja: "一服",
-    price: "¥5,500",
-    what: "English lecture, a live tea-preparation demo, and hands-on matcha whisking.",
-    duration: "~30 min",
-  },
-  {
-    name: "Kikicha",
-    ja: "利き茶",
-    price: "¥5,500",
-    what: "Compare three grades of matcha, served in whiskey tasting glasses.",
-    duration: "~30 min",
-  },
+export const plans: { id: PlanId; name: string; ja: string; price: number; minutes: number }[] = [
+  { id: "signature", name: "Signature", ja: "茶乃間 一式", price: 9000, minutes: 45 },
+  { id: "ippuku", name: "Ippuku", ja: "一服", price: 5500, minutes: 30 },
+  { id: "kikicha", name: "Kikicha", ja: "利き茶", price: 5500, minutes: 30 },
 ];
 
-export const house = [
-  { k: "Guests", v: "Up to 4 (small groups)" },
-  { k: "Language", v: "Fully in English" },
-  { k: "Where", v: "3F Nishimura Flower Shop<br>Kyoto" },
-  { k: "Booking", v: "By reservation only" },
-];
+export const fromPrice = Math.min(...plans.map((p) => p.price));
 
-export const chapters = [
-  { mark: "二", label: "The Tea Room", href: "/#room" },
-  { mark: "三", label: "Preparing Matcha", href: "/#matcha" },
-  { mark: "四", label: "The Plans", href: "/#plans" },
-  { mark: "五", label: "Moments", href: "/#moments" },
-  { mark: "六", label: "Reserve", href: "/#reserve" },
-  { mark: "◦", label: "About", href: "/about" },
-];
+export const yen = (n: number) => `¥${n.toLocaleString("en-US")}`;
 
-/** Prefix an absolute path with the configured base (for GitHub Pages sub-paths). */
+export const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(site.address.mapsQuery)}`;
+export const mapsEmbed = `https://maps.google.com/maps?q=${encodeURIComponent(site.address.mapsQuery)}&z=17&output=embed`;
+export const instagramUrl = `https://www.instagram.com/${site.instagram}/`;
+export const instagramDm = `https://ig.me/m/${site.instagram}`;
+
+/** Prefix an absolute path with the configured base (GitHub Pages sub-path). */
 export const url = (path: string) => `${import.meta.env.BASE_URL.replace(/\/$/, "")}${path}`;

@@ -1,0 +1,159 @@
+---
+import "../styles/global.css";
+import { getImage } from "astro:assets";
+import Header from "../components/islands/Header";
+import Logo from "../components/Logo.astro";
+import { copy, type Lang } from "../i18n/copy";
+import { path, absolute, other, type Page } from "../i18n/paths";
+import { site, url, instagramUrl, mapsUrl } from "../data/site";
+import ogSource from "../assets/images/01-takase-river-dusk.jpg";
+
+interface Props {
+  lang: Lang;
+  page: Page;
+  title: string;
+  description: string;
+}
+const { lang, page, title, description } = Astro.props;
+const t = copy[lang];
+const home = path(lang, "home");
+const alt = other(lang);
+
+const og = await getImage({ src: ogSource, width: 1200, height: 630, format: "jpg", fit: "cover" });
+const ogUrl = new URL(og.src, "https://ichino3636ichigo-dotcom.github.io").href;
+
+const links = [
+  { href: `${home}#plans`, label: t.nav.experiences },
+  { href: `${home}#session`, label: t.nav.session },
+  { href: `${home}#visit`, label: t.nav.visit },
+  { href: `${home}#faq`, label: t.nav.faq },
+  { href: path(lang, "about"), label: t.nav.story },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "chanoma 茶乃間",
+  description: copy.en.meta.description,
+  url: site.url,
+  image: ogUrl,
+  email: site.email,
+  sameAs: [instagramUrl],
+  hasMap: mapsUrl,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "674-10 Kamiyacho, Nakagyo-ku, Nishimura Flower Shop 3F",
+    addressLocality: "Kyoto",
+    postalCode: "604-8024",
+    addressCountry: "JP",
+  },
+  priceRange: "¥5,500–¥9,000",
+};
+---
+
+<!doctype html>
+<html lang={t.htmlLang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={absolute(lang, page)} />
+    <link rel="alternate" hreflang="en" href={absolute("en", page)} />
+    <link rel="alternate" hreflang="ja" href={absolute("ja", page)} />
+    <link rel="alternate" hreflang="x-default" href={absolute("en", page)} />
+    <link rel="icon" type="image/svg+xml" href={url("/favicon.svg")} />
+    <meta name="theme-color" content="#f6f2ea" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="chanoma 茶乃間" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={absolute(lang, page)} />
+    <meta property="og:image" content={ogUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content={lang === "ja" ? "ja_JP" : "en_US"} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Shippori+Mincho:wght@500&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap"
+    />
+    <script is:inline>document.documentElement.classList.add("js");</script>
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body class="min-h-dvh">
+    <a
+      href={`${home}#book`}
+      class="sr-only z-50 rounded-md bg-paper px-4 py-3 focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:ring-2 focus:ring-matcha"
+    >
+      {t.nav.skip}
+    </a>
+
+    <Header
+      client:load
+      home={home}
+      brand="chanoma 茶乃間"
+      links={links}
+      book={{ href: `${home}#book`, label: t.nav.book }}
+      lang={{ href: path(alt, page), label: t.nav.switchLangLabel, title: t.nav.switchLang, code: alt }}
+      labels={{ menu: t.nav.menu, close: t.nav.close }}
+    />
+
+    <slot />
+
+    <footer class="bg-night text-paper/80">
+      <div class="container-x grid gap-12 py-16 md:grid-cols-[1.4fr_1fr_1fr] md:py-20">
+        <div class="max-w-sm">
+          <a href={home} class="inline-flex items-center gap-3 text-paper">
+            <Logo class="size-10" />
+            <span class="font-display text-3xl font-medium">chanoma</span>
+            <span class="font-mincho tracking-[0.2em] text-paper/60">茶乃間</span>
+          </a>
+          <p class="mt-5 font-display text-xl leading-snug text-paper/90 italic [:lang(ja)_&]:font-mincho [:lang(ja)_&]:text-base [:lang(ja)_&]:not-italic">
+            {t.footer.tagline}
+          </p>
+          <address class="mt-6 text-sm leading-relaxed not-italic">
+            {(lang === "ja" ? site.address.ja : site.address.en).map((l) => <span class="block">{l}</span>)}
+          </address>
+        </div>
+        <div>
+          <h2 class="text-xs font-medium tracking-[0.18em] text-paper/50 uppercase">{t.footer.explore}</h2>
+          <ul class="mt-4 space-y-2.5 text-[0.9375rem]">
+            {links.map((l) => <li><a href={l.href} class="hover:text-paper">{l.label}</a></li>)}
+            <li><a href={path(alt, page)} hreflang={alt} class="hover:text-paper">{t.nav.switchLangLabel}</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="text-xs font-medium tracking-[0.18em] text-paper/50 uppercase">{t.footer.contact}</h2>
+          <ul class="mt-4 space-y-2.5 text-[0.9375rem]">
+            <li><a href={instagramUrl} target="_blank" rel="noopener" class="hover:text-paper">Instagram · @{site.instagram}</a></li>
+            <li><a href={`mailto:${site.email}`} class="break-all hover:text-paper">{site.email}</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="container-x border-t border-paper/10 pt-6 pb-24 text-xs text-paper/50 md:pb-6">
+        © {new Date().getFullYear()} {t.footer.rights}
+      </div>
+    </footer>
+
+    <script>
+      // Fade sections in as they arrive. Content is visible without JS.
+      const els = document.querySelectorAll("[data-reveal]");
+      const io = new IntersectionObserver(
+        (entries) =>
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("is-in");
+              io.unobserve(e.target);
+            }
+          }),
+        { rootMargin: "0px 0px -10% 0px" },
+      );
+      els.forEach((el) => io.observe(el));
+    </script>
+  </body>
+</html>

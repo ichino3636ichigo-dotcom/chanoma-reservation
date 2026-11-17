@@ -1,8 +1,9 @@
 # chanoma — Tea Ceremony & Matcha Experience in Kyoto
 
-https://ichino3636ichigo-dotcom.github.io/chanoma-reservation/
+- English: https://ichino3636ichigo-dotcom.github.io/chanoma-reservation/
+- 日本語: https://ichino3636ichigo-dotcom.github.io/chanoma-reservation/ja
 
-Astro + Tailwind CSS + React で作ったサイトです。
+Astro + Tailwind CSS + React で作ったサイトです。英語と日本語の2言語。
 
 ## 開発
 
@@ -16,16 +17,27 @@ npm run build    # dist/ に出力
 
 | 内容 | ファイル |
 | --- | --- |
-| 料金・プラン・連絡先・メニュー | `src/data/site.ts` |
-| トップページ | `src/pages/index.astro` |
-| About ページ | `src/pages/about.astro` |
+| 料金・所要時間・住所・連絡先 | `src/data/site.ts` |
+| 文章（英語・日本語）、FAQ、プランの内容 | `src/i18n/copy.ts` |
+| トップページの構成 | `src/components/Home.astro` |
+| 茶乃間についてページ | `src/components/About.astro` |
+| ヘッダー・フッター・meta | `src/layouts/Base.astro` |
 | 色・フォント | `src/styles/global.css` |
-| 動き（メニュー、ヒーロー、茶室のフェード、波紋、時計、カーソル） | `src/components/*.tsx` |
 | 写真 | `src/assets/images/` |
 
-写真は元の大きな JPG を置くだけで、ビルド時に AVIF / WebP の各サイズが自動生成されます。
+## 動く部品（React アイランド）
+
+| 部品 | 役割 |
+| --- | --- |
+| `Header` | 追従ヘッダーとスマホ用メニュー |
+| `BookingRequest` | 予約リクエスト作成。メール（mailto）か Instagram DM に送る文面を組み立てる |
+| `Gallery` | 茶室の写真一覧と拡大表示（キーボード・スワイプ対応） |
+| `MapEmbed` | 押したときだけ Google マップを読み込む |
+| `CopyButton` | タクシー用の日本語住所をコピー |
+| `MobileBookBar` | スマホで画面下に出る予約ボタン |
+
+予約システム（サーバー）はありません。フォームは送信内容を組み立てて、お客様のメールアプリや Instagram に渡すだけです。
 
 ## 公開
 
 `main` に push すると GitHub Actions（`.github/workflows/deploy.yml`）がビルドして GitHub Pages に公開します。
-リポジトリの Settings → Pages → Source は **GitHub Actions** にしておく必要があります。

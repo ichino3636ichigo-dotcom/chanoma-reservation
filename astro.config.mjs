@@ -2,6 +2,7 @@
 import { defineConfig } from 'astro/config';
 
 import react from '@astrojs/react';
+import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
@@ -12,7 +13,7 @@ export default defineConfig({
   // Emit about.html (not about/index.html) so the old /about.html link keeps working.
   build: { format: 'file' },
 
-  integrations: [react()],
+  integrations: [react(), sitemap()],
 
   vite: {
     plugins: [tailwindcss()]

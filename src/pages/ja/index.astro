@@ -1,0 +1,10 @@
+---
+import Base from "../../layouts/Base.astro";
+import Home from "../../components/Home.astro";
+import { copy } from "../../i18n/copy";
+const t = copy.ja;
+---
+
+<Base lang="ja" page="home" title={t.meta.title} description={t.meta.description}>
+  <Home lang="ja" />
+</Base>
