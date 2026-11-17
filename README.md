@@ -41,3 +41,11 @@ npm run build    # dist/ に出力
 ## 公開
 
 `main` に push すると GitHub Actions（`.github/workflows/deploy.yml`）がビルドして GitHub Pages に公開します。
+
+## 出張ページの写真
+
+出張ページの写真は色味をそろえてから使っています。元の写真を `photos/offsite/` に置いて次を実行すると、補正済みの写真が `src/assets/images/offsite/` にできます。
+
+```bash
+node scripts/grade-photos.mjs
+```

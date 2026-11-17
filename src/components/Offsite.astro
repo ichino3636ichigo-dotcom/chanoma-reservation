@@ -20,6 +20,11 @@ import liliTemae from "../assets/images/offsite/lili-temae.jpg";
 import liliTokonoma from "../assets/images/offsite/lili-tokonoma.jpg";
 import cuhkTalk from "../assets/images/offsite/cuhk-talk.jpg";
 import cuhkGroup from "../assets/images/offsite/cuhk-group.jpg";
+import ykRoom from "../assets/images/offsite/yokohama-room.jpg";
+import ykTemae from "../assets/images/offsite/yokohama-temae.jpg";
+import ykGroup from "../assets/images/offsite/yokohama-group.jpg";
+import ykGuest from "../assets/images/offsite/yokohama-guest-portrait.jpg";
+import ykChat from "../assets/images/offsite/yokohama-chat.jpg";
 
 interface Props {
   lang: Lang;
@@ -27,26 +32,30 @@ interface Props {
 const { lang } = Astro.props;
 const o = offsite[lang];
 const t = copy[lang];
-const marks = ["一", "二", "三"];
+const marks = ["一", "二", "三", "四", "五", "六", "七", "八"];
 const isJa = lang === "ja";
 
 // one photo per track-record entry
 const workPhotos: Record<string, { src: ImageMetadata; alt: string }> = {
   lili: { src: liliTearoom, alt: isJa ? "LiLi株式会社の研修で、茶室でお点前をする亭主" : "The host performing temae in a tatami tea room for LiLi Inc." },
-  ushare: { src: ushareServing, alt: isJa ? "U Share のワークショップで参加者にお湯を注ぐ亭主" : "The host pouring hot water for participants at U Share" },
+  ushare: { src: ushareTalk, alt: isJa ? "U Share のワークショップで茶道について話す亭主" : "The host introducing tea ceremony at the U Share workshop" },
+  yokohama: { src: ykTemae, alt: isJa ? "白雲亭で、立礼卓を使ってお点前をする亭主" : "The host preparing tea at a ryūrei table at Hakuun-tei" },
   cuhk: { src: cuhkTalk, alt: isJa ? "香港中文大学で「清寂」について話す亭主" : "The host explaining sei-jaku (purity and tranquillity) at CUHK" },
 };
 
 // gallery from past sessions
 const shots: [ImageMetadata, string, string, string][] = [
-  [cuhkGroup, "香港中文大学のイベント参加者との集合写真", "Group photo with participants at The Chinese University of Hong Kong", "col-span-2 row-span-2"],
+  [ykGroup, "白雲亭での横浜JCの皆さまとの集合写真", "Group photo with Yokohama JC at Hakuun-tei", "col-span-2 row-span-2"],
   [ushareBowl, "U Share のワークショップで点てた一服", "A bowl of matcha whisked at the U Share workshop", "row-span-2"],
   [liliTokonoma, "研修会場の茶室の床の間", "The alcove of the tea room used for the training", ""],
   [ushareTray, "盆略点前の道具と干菓子", "Tray-style tea tools and dry sweets", ""],
-  [ushareHost, "ワークショップ前、立礼の席につく亭主", "The host seated at the ryūrei table before the workshop", "row-span-2"],
+  [ykGuest, "立礼の席で一服をいただく参加者", "A guest enjoying a bowl at the ryūrei table", "row-span-2"],
   [liliTemae, "茶室でお点前をする亭主", "The host performing temae in the tea room", "row-span-2"],
-  [liliGuests, "お点前を見学する研修の参加者", "Training participants watching the temae", "row-span-2"],
+  [ykChat, "参加者と写真を見ながら話す亭主", "The host looking at photos with guests", "row-span-2"],
+  [ushareServing, "U Share のワークショップで参加者にお湯を注ぐ亭主", "The host pouring hot water for participants at U Share", "row-span-2"],
+  [cuhkGroup, "香港中文大学のイベント参加者との集合写真", "Group photo with participants at The Chinese University of Hong Kong", "col-span-2 row-span-2"],
   [ushareFlowers, "ワークショップの机に生けた季節の花", "Seasonal flowers on the workshop tables", "row-span-2"],
+  [liliGuests, "お点前を見学する研修の参加者", "Training participants watching the temae", "row-span-2"],
 ];
 const gallery: GalleryImage[] = await Promise.all(
   shots.map(async ([src, ja, en, span]) => {
@@ -85,7 +94,7 @@ const h2 = "h-display mt-4 text-4xl md:text-[3.25rem] [:lang(ja)_&]:text-[2.25re
           <a href="#formats" class="btn btn-ghost text-matcha">{o.hero.secondary}</a>
         </div>
       </div>
-      <Photo src={ushareTalk} alt={o.hero.photoAlt} priority sizes="(min-width: 1024px) 45vw, 100vw" class="aspect-[4/3] rounded-[1.25rem] lg:aspect-[5/4]" position="30% 50%" />
+      <Photo src={ykRoom} alt={o.hero.photoAlt} priority sizes="(min-width: 1024px) 45vw, 100vw" class="aspect-[4/3] rounded-[1.25rem] lg:aspect-[5/4]" />
     </div>
   </section>
 
@@ -97,12 +106,12 @@ const h2 = "h-display mt-4 text-4xl md:text-[3.25rem] [:lang(ja)_&]:text-[2.25re
         <h2 class={h2}>{o.formats.title}</h2>
         <p class="mt-4 text-lg text-ink-2">{o.formats.lead}</p>
       </div>
-      <ul class="mt-12 grid gap-5 md:grid-cols-3" data-reveal>
+      <ul class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4" data-reveal>
         {
           o.formats.items.map((f, i) => (
             <li class="flex flex-col rounded-2xl border border-line bg-[#fffdf9] p-6 sm:p-8">
               <span class="font-mincho text-lg text-matcha" aria-hidden="true">{marks[i]}</span>
-              <h3 class="mt-3 font-display text-[1.9rem] leading-tight font-semibold [:lang(ja)_&]:font-mincho [:lang(ja)_&]:text-[1.4rem]">{f.name}</h3>
+              <h3 class="mt-3 font-display text-[1.75rem] leading-tight font-semibold [:lang(ja)_&]:font-mincho [:lang(ja)_&]:text-[1.3rem]">{f.name}</h3>
               <p class="mt-1 text-sm text-muted">{f.ja}</p>
               <p class="mt-4 leading-relaxed text-ink-2">{f.body}</p>
               <p class="mt-auto border-t border-line pt-4 text-sm text-matcha">{f.fit}</p>
@@ -184,15 +193,12 @@ const h2 = "h-display mt-4 text-4xl md:text-[3.25rem] [:lang(ja)_&]:text-[2.25re
       <ol class="relative" data-reveal>
         {
           o.flow.steps.map((s, i) => (
-            <li class="relative grid grid-cols-[4rem_1fr] gap-4 pb-8 last:pb-0">
-              {i < o.flow.steps.length - 1 && <span class="absolute top-14 bottom-0 left-8 w-px bg-line" aria-hidden="true" />}
-              <span class="relative grid size-16 place-items-center rounded-full border border-line bg-paper text-center leading-none">
-                <span>
-                  <span class="block font-display text-xl font-semibold text-matcha tabular-nums">{s.min}</span>
-                  <span class="text-[0.6875rem] text-muted">{o.flow.minutes}</span>
-                </span>
+            <li class="relative grid grid-cols-[3rem_1fr] gap-4 pb-7 last:pb-0">
+              {i < o.flow.steps.length - 1 && <span class="absolute top-12 bottom-0 left-6 w-px bg-line" aria-hidden="true" />}
+              <span class="relative grid size-12 place-items-center rounded-full border border-line bg-paper font-mincho text-lg text-matcha">
+                {marks[i]}
               </span>
-              <div class="pt-3">
+              <div class="pt-2.5">
                 <h3 class="text-lg font-medium">{s.title}</h3>
                 <p class="mt-1 leading-relaxed text-ink-2">{s.body}</p>
               </div>
