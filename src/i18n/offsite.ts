@@ -21,7 +21,7 @@ const en = {
   formats: {
     eyebrow: "What we can do",
     title: "Four ways to bring tea",
-    lead: "Timing and content are arranged around your group, for up to about 20 people. Sessions can be held in English or Japanese.",
+    lead: "Timing and content are arranged around your group, with no set limit on numbers. Sessions can be held in English or Japanese.",
     items: [
       {
         name: "Ryūrei workshop",
@@ -117,7 +117,7 @@ const en = {
     title: "Fees and conditions",
     items: [
       { k: "Fee", v: "Host fee ¥30,000 + tool rental ¥20,000, plus matcha, sweets and other costs." },
-      { k: "Group size", v: "Up to about 20 people." },
+      { k: "Group size", v: "No set limit — tell us your numbers and we'll suggest a format." },
       { k: "Area, timing & travel", v: "Flexible — just ask. We have run sessions in Tokyo, Yokohama and Hong Kong." },
       { k: "What we need", v: "Tables and chairs, hot water (a kettle or pot) and room to set up. A projector helps for larger groups." },
       { k: "Language", v: "English or Japanese." },
@@ -205,7 +205,7 @@ const ja: OffsiteCopy = {
   formats: {
     eyebrow: "出張でできること",
     title: "四つのかたち",
-    lead: "時間や内容は、ご依頼に合わせて柔軟に組み立てます（20名程度まで）。英語・日本語のどちらでも進行できます。",
+    lead: "時間や内容は、ご依頼に合わせて柔軟に組み立てます。人数の上限はありません。英語・日本語のどちらでも進行できます。",
     items: [
       {
         name: "立礼ワークショップ",
@@ -301,7 +301,7 @@ const ja: OffsiteCopy = {
     title: "料金・条件",
     items: [
       { k: "料金", v: "講師料 30,000円 ＋ 道具レンタル料 20,000円 ＋ 抹茶・お菓子などの実費" },
-      { k: "人数", v: "20名程度まで" },
+      { k: "人数", v: "上限はありません。人数をお知らせいただければ、合う形式をご提案します。" },
       { k: "エリア・時期・交通費", v: "柔軟に対応します。お気軽にご相談ください（東京・横浜・香港での実績があります）。" },
       { k: "ご用意いただくもの", v: "机と椅子、お湯（ポットなど）、準備のスペース。人数が多い場合はプロジェクターがあると便利です。" },
       { k: "言語", v: "英語・日本語" },
