@@ -1,0 +1,10 @@
+---
+import Base from "../layouts/Base.astro";
+import Offsite from "../components/Offsite.astro";
+import { offsite } from "../i18n/offsite";
+const o = offsite.en;
+---
+
+<Base lang="en" page="offsite" title={o.meta.title} description={o.meta.description}>
+  <Offsite lang="en" />
+</Base>

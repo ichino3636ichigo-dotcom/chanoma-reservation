@@ -19,6 +19,7 @@ const en = {
     visit: "Visit",
     faq: "FAQ",
     story: "Our story",
+    offsite: "Off-site",
     book: "Book",
     menu: "Menu",
     close: "Close",
@@ -100,7 +101,7 @@ const en = {
     offsite: {
       title: "Tea, wherever you are",
       body: "We can also bring the tea ceremony to you — at home, at a hotel or ryokan, for company culture training, or at an outdoor event. Timing and content are arranged around you.",
-      cta: "Ask about off-site sessions",
+      cta: "See off-site sessions",
     },
   },
   flow: {
@@ -291,6 +292,7 @@ const ja: Copy = {
     visit: "アクセス",
     faq: "よくある質問",
     story: "茶乃間について",
+    offsite: "出張",
     book: "予約",
     menu: "メニュー",
     close: "閉じる",
@@ -372,7 +374,7 @@ const ja: Copy = {
     offsite: {
       title: "出張サービス",
       body: "ご自宅、ホテル・旅館、会社の文化研修、屋外やイベント会場など、場所にとらわれず茶道を体験していただけます。時間や内容はご依頼に合わせて柔軟に対応します。",
-      cta: "出張について問い合わせる",
+      cta: "出張について見る",
     },
   },
   flow: {

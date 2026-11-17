@@ -1,11 +1,11 @@
 import { url } from "../data/site";
 import type { Lang } from "./copy";
 
-export type Page = "home" | "about";
+export type Page = "home" | "about" | "offsite";
 
 const raw: Record<Lang, Record<Page, string>> = {
-  en: { home: "/", about: "/about" },
-  ja: { home: "/ja", about: "/ja/about" },
+  en: { home: "/", about: "/about", offsite: "/offsite" },
+  ja: { home: "/ja", about: "/ja/about", offsite: "/ja/offsite" },
 };
 
 export const path = (lang: Lang, page: Page) => url(raw[lang][page]);

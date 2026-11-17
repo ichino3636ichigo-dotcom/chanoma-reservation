@@ -194,11 +194,8 @@ const isJa = lang === "ja";
           <h3 class="font-display text-2xl font-semibold [:lang(ja)_&]:font-mincho [:lang(ja)_&]:text-xl">{t.plans.offsite.title}</h3>
           <p class="mt-2 max-w-3xl text-ink-2">{t.plans.offsite.body}</p>
         </div>
-        <a
-          href={`mailto:${site.email}?subject=${encodeURIComponent(isJa ? "出張サービスについて" : "Off-site tea ceremony enquiry")}`}
-          class="btn btn-ghost text-matcha"
-        >
-          {t.plans.offsite.cta}
+        <a href={path(lang, "offsite")} class="btn btn-ghost text-matcha">
+          {t.plans.offsite.cta} <span aria-hidden="true">→</span>
         </a>
       </div>
     </div>
