@@ -11,7 +11,7 @@ const en = {
       "An intimate tea ceremony and matcha tasting for up to 4 guests, hosted in English in a tatami room above Nishimura Flower Shop in Kyoto. By reservation only.",
     aboutTitle: "Our story — chanoma",
     aboutDescription:
-      "Where chanoma began: a tea practitioner taught by her grandmother, an Urasenke Jun-kyōju, and a small tea room above a Kyoto flower shop.",
+      "Where chanoma began: learning tea from a grandmother in a century-old tea room, and a wish to share its joys with more people.",
   },
   nav: {
     experiences: "Experiences",
@@ -153,8 +153,8 @@ const en = {
   story: {
     eyebrow: "Our story",
     quote:
-      "At the heart of tea ceremony is simply being present: with the guest before you, with the season, and with the bowl of matcha in your hands.",
-    body: "chanoma began with a grandmother's tea room and four years of teaching tea to crowds — and the wish to offer something quieter.",
+      "Tea ceremony is a culture of meeting others over a single bowl of tea, and treasuring the time that flows through that moment.",
+    body: "chanoma began in a grandmother's tea room, grew through four years of teaching guests from around the world, and comes from a wish to share the joys of tea with more people.",
     cta: "Read our story",
   },
   book: {
@@ -259,12 +259,16 @@ const en = {
     sub: "はじまりの話",
     photoAlt: "The quiet tatami room with a round window and two cushions",
     paragraphs: [
-      "I learned the way of tea from my grandmother — a Jun-kyōju of the Urasenke school, holding its highest rank of certified teacher. Our tea room was tucked away at the back of our family home, a space that had stood for over a century. Spending time there from an early age made tea ceremony feel like a natural part of my life.",
-      "For four years, I worked as a tea ceremony instructor, welcoming groups of visitors from around the world. The form of tea ceremony was there, but I began to feel that something essential was being lost in a crowded setting — the quietness, the subtle care for each guest, and the intimate connection between host and guest. That feeling led me to create chanoma.",
-      "At the heart of tea ceremony is simply being present: with the guest before you, with the season, and with the bowl of matcha in your hands. From this attentiveness emerges the spirit of hospitality. For four hundred years, the traditions of tea have been refined into a way of welcoming guests with thoughtfulness and care. Yet the heart of tea cannot always be conveyed through words or explanations. At chanoma, we offer a small, intimate space where you can slow down, sit together, and experience the spirit of tea for yourself.",
+      "I learned the way of tea from my grandmother.",
+      "Lessons took place in a century-old tea room at the back of our family home. Spending time there from an early age, tea ceremony quietly became part of my everyday life.",
+      "Later, for four years, I worked as an instructor at a place where guests from Japan and around the world came to experience tea ceremony.",
+      "As I have kept learning tea, it has brought me many meaningful encounters with people. And the habits it teaches — gestures that consider the other person, and giving your full attention to what is in front of you — bring small moments of richness to daily life, long after I leave the tea room.",
+      "I wanted to share these joys of tea with more people. That wish is how chanoma began.",
+      "Tea ceremony is a culture of meeting others over a single bowl of tea and treasuring the time that flows through that moment. Feeling the season, thinking of the other person, and carrying out each gesture with care — I believe that, little by little, this practice enriches our daily lives and the way we relate to one another.",
+      "Our hope is that you can enjoy this culture, handed down for over four hundred years, in a relaxed and welcoming way.",
+      "We hope chanoma can be a moment to step away from a busy day and take your time — with yourself, and with the people in front of you.",
     ],
     facts: [
-      { k: "Teacher", v: "Grandmother, an Urasenke Jun-kyōju" },
       { k: "Experience", v: "Four years teaching tea ceremony" },
       { k: "The room", v: "Nishimura Flower Shop 3F, Kyoto" },
     ],
@@ -284,7 +288,7 @@ const ja: Copy = {
     description:
       "京都・西村花店3階の和室でひらく、最大4名の茶道体験と抹茶の飲み比べ。初めての方も、海外の方も気軽に。完全予約制。",
     aboutTitle: "はじまりの話 — 茶乃間",
-    aboutDescription: "裏千家准教授の祖母に学んだ茶の湯。京都の花屋の三階に、小さな茶の間をひらくまで。",
+    aboutDescription: "祖母に教わった茶道。築百年の茶室から、茶乃間が生まれるまでの話。",
   },
   nav: {
     experiences: "プラン",
@@ -416,8 +420,8 @@ const ja: Copy = {
   },
   story: {
     eyebrow: "茶乃間について",
-    quote: "茶道の本質は、目の前のお客様、季節、抹茶に向き合うこと。",
-    body: "祖母の茶室で育ち、四年間、大勢を迎える茶道体験の講師を務めたのち、もっと静かな場をつくりたいと茶乃間を始めました。",
+    quote: "茶道には、一服のお茶を通じて人と向き合い、その場に流れる時間を大切にする文化があります。",
+    body: "祖母の茶室で茶道に親しみ、四年間、国内外のお客様に茶道体験の講師を務めてきました。その魅力をもっと多くの方と分かち合いたいという想いから、茶乃間は生まれました。",
     cta: "はじまりの話を読む",
   },
   book: {
@@ -519,12 +523,16 @@ const ja: Copy = {
     sub: "Where it began",
     photoAlt: "丸窓と二枚の座布団がある静かな和室",
     paragraphs: [
-      "茶道を学んだのは、祖母からでした。祖母は裏千家の准教授。稽古の場は家の奥にある築百年の茶室で、幼い頃からあの部屋で過ごした日々が、茶道を身近に感じさせてくれました。",
-      "四年間、多くの観光客を一度に迎える茶道体験の場で、講師を続けました。形はあっても、本当に伝えたいこと——静けさ、細やかな心くばり、亭主と客との近さ——は、大勢の中ではこぼれ落ちてしまう。そう感じて、茶乃間を始めました。",
-      "茶道の本質は、目の前のお客様、季節、抹茶に向き合うこと。それがおもてなしにつながる一連の流れだと思っています。四百年をかけて研ぎ澄まされた、客人を迎えるための型。説明だけでは届かない茶道の心を、小さな間で、ゆっくり、座って体感していただく場を茶乃間がご用意します。",
+      "茶道は祖母から教わりました。",
+      "家の奥にある築百年の茶室でのお稽古。幼い頃からその空間で過ごすうちに、茶道はいつしか私の暮らしの一部になっていました。",
+      "その後、四年間にわたり、国内外から訪れるお客様に茶道を体験していただく場で、講師を務めてきました。",
+      "私自身、茶道を学び続ける中で、多くの方とのご縁に恵まれました。また、相手を思う所作や、目の前のことに心を向ける習慣は、茶室を出た後の日常にも、小さな豊かさをもたらしてくれています。",
+      "そうした茶道の魅力を、もっと多くの方と分かち合いたい。そんな想いから、茶乃間は生まれました。",
+      "茶道には、一服のお茶を通じて人と向き合い、その場に流れる時間を大切にする文化があります。季節を感じ、相手を思い、ひとつひとつの所作を丁寧に重ねる。その積み重ねが、日々の暮らしや人との関わり方を、少しずつ豊かにしてくれるように思います。",
+      "四百年余り受け継がれてきた茶道の文化を、気軽に楽しんでいただけるように。",
+      "茶乃間が、忙しない日常から少し離れ、自分自身や目の前の人とゆっくり向き合うひとときとなれば幸いです。",
     ],
     facts: [
-      { k: "師", v: "裏千家准教授の祖母" },
       { k: "経歴", v: "茶道体験の講師として四年間" },
       { k: "茶室", v: "京都・西村花店 3F" },
     ],
