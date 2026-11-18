@@ -41,16 +41,16 @@ const en = {
     title: "Small on purpose.",
     items: [
       {
-        title: "Four guests at most",
-        body: "Each session is small enough for the host to prepare tea for you — not for a crowd.",
+        title: "Small groups",
+        body: "Up to 4 guests per session. For families or groups of more than 4, please get in touch.",
       },
       {
         title: "Explained in English",
         body: "Learn what each gesture means, then whisk a bowl of matcha with your own hands.",
       },
       {
-        title: "Tea and flowers, one roof",
-        body: "The tea room sits above a working florist, where ikebana and the way of tea meet naturally.",
+        title: "A tatami room with the river and flowers close by",
+        body: "The tea room sits above a flower shop on the banks of the Takase River — a place where nature and the way of tea meet naturally.",
       },
     ],
   },
@@ -318,16 +318,16 @@ const ja: Copy = {
     title: "小さいから、届くもの。",
     items: [
       {
-        title: "一席は最大4名まで",
-        body: "大勢のための茶ではなく、目の前のあなたのために一服を点てられる人数です。",
+        title: "少人数制",
+        body: "一席は最大4名まで（ご家族や団体で4名以上などの場合がございましたら、ご相談ください）。",
       },
       {
         title: "わかりやすく、ていねいに",
         body: "所作の意味を知ってから、ご自身で茶筅を振って一服を点てていただきます。英語でのご案内もできます。",
       },
       {
-        title: "花と茶が、ひとつ屋根の下に",
-        body: "茶室は生花店の上にあります。いけばなと茶の湯が、自然に出会う場所です。",
+        title: "川のせせらぎとお花を感じられる和室",
+        body: "茶室は高瀬川のほとりの生花店の上にあります。自然と茶の湯が、自然に出会う場所です。",
       },
     ],
   },
