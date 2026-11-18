@@ -133,8 +133,8 @@ const en = {
   },
   room: {
     eyebrow: "The room",
-    title: "A tatami room with a round window",
-    lead: "Three floors above the street, the room is quiet, softly lit, and furnished only with what tea needs.",
+    title: "A tea room above a flower shop, by the Takase River",
+    lead: "Seasonal flowers downstairs, the Takase River outside the window. Enjoy a bowl of tea at your own pace in a small tatami room with a round window.",
     open: "Open photo",
     prev: "Previous photo",
     next: "Next photo",
@@ -401,8 +401,8 @@ const ja: Copy = {
   },
   room: {
     eyebrow: "茶室",
-    title: "丸窓のある、三階の和室",
-    lead: "通りから三階ぶん離れた和室は静かで、やわらかな光が入ります。置いてあるのは、茶に必要なものだけ。",
+    title: "高瀬川を望む、花屋の三階の茶室",
+    lead: "階下には季節の花、窓の外には高瀬川。丸窓のある小さな和室で、ゆっくりと一服をお楽しみください。",
     open: "写真を開く",
     prev: "前の写真",
     next: "次の写真",
