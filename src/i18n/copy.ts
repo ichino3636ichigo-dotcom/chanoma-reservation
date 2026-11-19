@@ -269,8 +269,9 @@ const en = {
       "We hope chanoma can be a moment to step away from a busy day and take your time — with yourself, and with the people in front of you.",
     ],
     facts: [
-      { k: "Experience", v: "Four years teaching tea ceremony" },
-      { k: "The room", v: "Nishimura Flower Shop 3F, Kyoto" },
+      { k: "Place", v: "Nishimura Flower Shop 3F, Kyoto" },
+      { k: "Sessions", v: "Up to 4 guests · by reservation only" },
+      { k: "Languages", v: "Japanese and English" },
     ],
     closing: "Sessions are by reservation only — up to 4 guests, fully in English.",
     photo2Alt: "The host in kimono outside Nishimura Flower Shop",
@@ -533,8 +534,9 @@ const ja: Copy = {
       "茶乃間が、忙しない日常から少し離れ、自分自身や目の前の人とゆっくり向き合うひとときとなれば幸いです。",
     ],
     facts: [
-      { k: "経歴", v: "茶道体験の講師として四年間" },
-      { k: "茶室", v: "京都・西村花店 3F" },
+      { k: "場所", v: "京都・西村花店 3F" },
+      { k: "一席", v: "最大4名・完全予約制" },
+      { k: "言語", v: "日本語・英語" },
     ],
     closing: "完全予約制・一席最大4名。英語でもご案内します。",
     photo2Alt: "西村花店の前に立つ着物姿の亭主",
