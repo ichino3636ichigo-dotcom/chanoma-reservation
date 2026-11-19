@@ -10,7 +10,7 @@ import MapEmbed from "./islands/MapEmbed";
 import MobileBookBar from "./islands/MobileBookBar";
 import { copy, fill, type Lang } from "../i18n/copy";
 import { path } from "../i18n/paths";
-import { site, plans, fromPrice, yen, mapsUrl, mapsEmbed, instagramUrl, instagramDm } from "../data/site";
+import { site, plans, privateMin, fromPrice, yen, mapsUrl, mapsEmbed, instagramUrl, instagramDm } from "../data/site";
 
 import shopDusk from "../assets/images/01-takase-river-dusk.jpg";
 import willow from "../assets/images/04a-tatami.jpg";
@@ -189,6 +189,16 @@ const isJa = lang === "ja";
         }
       </ul>
 
+      <div class="mt-6 grid gap-6 rounded-2xl border border-line bg-[#fffdf9] p-6 sm:p-8 md:grid-cols-[1fr_auto] md:items-center" data-reveal>
+        <div>
+          <h3 class="font-display text-2xl font-semibold [:lang(ja)_&]:font-mincho [:lang(ja)_&]:text-xl">{t.plans.private.title}</h3>
+          <p class="mt-2 max-w-3xl text-ink-2">{fill(t.plans.private.body, { price: yen(privateMin) })}</p>
+        </div>
+        <a href="#book-private" class="btn btn-ghost text-matcha">
+          {t.plans.private.cta} <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
       <div class="mt-6 grid gap-6 rounded-2xl border border-dashed border-[#c9bea9] p-6 sm:p-8 md:grid-cols-[1fr_auto] md:items-center" data-reveal>
         <div>
           <h3 class="font-display text-2xl font-semibold [:lang(ja)_&]:font-mincho [:lang(ja)_&]:text-xl">{t.plans.offsite.title}</h3>
@@ -285,6 +295,7 @@ const isJa = lang === "ja";
   <section id="book" class="scroll-mt-16 py-20 md:py-28">
     <!-- targets for plan buttons so they scroll here even without JS -->
     {plans.map((p) => <span id={`book-${p.id}`} class="relative -top-24 block" aria-hidden="true" />)}
+    <span id="book-private" class="relative -top-24 block" aria-hidden="true" />
     <div class="container-x grid gap-12 lg:grid-cols-[1fr_1.6fr] lg:gap-16">
       <div data-reveal>
         <p class="eyebrow">{t.book.eyebrow}</p>
@@ -309,6 +320,7 @@ const isJa = lang === "ja";
           email={site.email}
           instagramDm={instagramDm}
           maxGuests={site.maxGuests}
+          privateMin={privateMin}
           minutesLabel={t.plans.minutes}
         />
       </div>

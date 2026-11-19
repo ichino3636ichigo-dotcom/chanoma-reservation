@@ -49,6 +49,17 @@ const en = {
       },
     ],
   },
+  uses: {
+    eyebrow: "For companies & organisations",
+    title: "Where a bowl of tea helps",
+    lead: "A tea session gives guests something to talk about and a memory to take home. Here are a few ways it can fit in.",
+    items: [
+      { title: "Welcoming overseas guests", body: "Hospitality for visiting partners, clients or delegations — the host explains everything in English, at your office, hotel or venue." },
+      { title: "Training & team building", body: "Culture training for new hires or global teams. Whisking tea for each other gets people talking across departments." },
+      { title: "Conferences & receptions", body: "A tea booth or a demonstration as part of an international conference, reception or company event." },
+      { title: "Hotels & ryokan", body: "A cultural programme for your guests, held in a meeting room or lounge with tables and chairs." },
+    ],
+  },
   work: {
     eyebrow: "Track record",
     title: "Past sessions",
@@ -116,10 +127,11 @@ const en = {
     eyebrow: "Practical details",
     title: "Fees and conditions",
     items: [
-      { k: "Host fee", v: "From ¥30,000 (e.g. a 60-minute session for about 10 people). Larger groups add a per-person charge for materials and assistance." },
+      { k: "Host fee", v: "From ¥30,000 for a 60-minute session for up to 10 people, plus ¥3,000 for each additional person." },
       { k: "Tool rental", v: "¥20,000" },
       { k: "Materials", v: "Matcha and sweets, at cost." },
       { k: "Travel & accommodation", v: "At cost." },
+      { k: "Example", v: "60 minutes for 20 people in Kyoto: host fee ¥60,000 + tool rental ¥20,000 = ¥80,000, plus matcha, sweets and travel at cost." },
       { k: "Quote", v: "We quote for each request based on content, group size and place. Students and non-profit groups — please ask." },
       { k: "Group size", v: "No set limit — tell us your numbers and we'll suggest a format." },
       { k: "Area & timing", v: "Flexible — just ask. We have run sessions in Tokyo, Yokohama and Hong Kong." },
@@ -136,7 +148,7 @@ const en = {
       { q: "Can the session be in English?", a: "Yes. Sessions can be run fully in English, or in Japanese." },
       { q: "Can you come outside Kyoto?", a: "Yes. Area, timing and travel are all flexible — we have run sessions in Tokyo, Yokohama and Hong Kong. Just ask." },
       { q: "What do we need to prepare?", a: "Tables and chairs, hot water and a little space to set up. We bring the tea, sweets and tools." },
-      { q: "How much does it cost?", a: "The host fee starts from ¥30,000 (e.g. 60 minutes for about 10 people), plus ¥20,000 tool rental, matcha and sweets at cost, and travel. Larger groups add a per-person charge. Send us a request and we'll reply with a quote — students and non-profit groups, please ask." },
+      { q: "How much does it cost?", a: "The host fee starts from ¥30,000 (60 minutes) for up to 10 people, plus ¥3,000 for each additional person, ¥20,000 tool rental, matcha and sweets at cost, and travel. Send us a request and we'll reply with a quote — students and non-profit groups, please ask." },
     ],
   },
   form: {
@@ -237,6 +249,17 @@ const ja: OffsiteCopy = {
       },
     ],
   },
+  uses: {
+    eyebrow: "企業・団体の方へ",
+    title: "こんな場面に、一服のお茶を",
+    lead: "一服のお茶は、会話のきっかけになり、持ち帰れる思い出になります。たとえば、こんな場面でご利用いただけます。",
+    items: [
+      { title: "海外からのお客様のおもてなし", body: "来日した取引先・パートナー・視察団の接遇に。オフィスやホテル、会場に伺い、英語で丁寧にご案内します。" },
+      { title: "研修・チームビルディング", body: "新入社員やグローバルチームの文化研修に。お互いにお茶を点て合うことで、部署を越えた会話が生まれます。" },
+      { title: "国際会議・レセプション", body: "国際会議やレセプション、社内イベントの一角に、お茶のブースやお点前の披露を。" },
+      { title: "ホテル・旅館", body: "宿泊のお客様向けの文化体験として。会議室やラウンジの机と椅子で開催できます。" },
+    ],
+  },
   work: {
     eyebrow: "実績",
     title: "これまでの出張",
@@ -304,10 +327,11 @@ const ja: OffsiteCopy = {
     eyebrow: "ご依頼の前に",
     title: "料金・条件",
     items: [
-      { k: "講師料", v: "30,000円〜（例：60分・10名程度の場合）。人数が増える場合は、材料・補助の分として1名あたりの加算があります。" },
+      { k: "講師料", v: "30,000円〜（60分・10名まで）。11名以上は1名につき3,000円を加算します。" },
       { k: "道具レンタル料", v: "20,000円" },
       { k: "実費", v: "抹茶・お菓子" },
       { k: "交通費・宿泊費", v: "実費" },
+      { k: "料金の例", v: "京都市内で60分・20名の場合：講師料60,000円＋道具レンタル料20,000円＝80,000円（抹茶・お菓子、交通費は実費）" },
       { k: "お見積り", v: "内容・人数・場所に合わせてお見積りします。学生・非営利団体の方はご相談ください。" },
       { k: "人数", v: "上限はありません。人数をお知らせいただければ、合う形式をご提案します。" },
       { k: "エリア・時期", v: "柔軟に対応します。お気軽にご相談ください（東京・横浜・香港での実績があります）。" },
@@ -324,7 +348,7 @@ const ja: OffsiteCopy = {
       { q: "英語で進行できますか？", a: "はい。英語のみでの進行も、日本語での進行もできます。" },
       { q: "京都以外にも来てもらえますか？", a: "はい。エリア・時期・交通費は柔軟に対応します。東京・横浜・香港での実績があります。お気軽にご相談ください。" },
       { q: "こちらで用意するものは？", a: "机と椅子、お湯、準備のスペースをお願いしています。抹茶・お菓子・道具は茶乃間がお持ちします。" },
-      { q: "料金はいくらですか？", a: "講師料は30,000円〜（例：60分・10名程度の場合）で、道具レンタル料20,000円、抹茶・お菓子の実費、交通費・宿泊費の実費が加わります。人数が増える場合は1名あたりの加算があります。内容・人数・場所に合わせてお見積りしますので、依頼フォームからご連絡ください。学生・非営利団体の方もご相談ください。" },
+      { q: "料金はいくらですか？", a: "講師料は30,000円〜（60分・10名まで）で、11名以上は1名につき3,000円を加算します。これに道具レンタル料20,000円、抹茶・お菓子の実費、交通費・宿泊費の実費が加わります。内容・人数・場所に合わせてお見積りしますので、依頼フォームからご連絡ください。学生・非営利団体の方もご相談ください。" },
     ],
   },
   form: {

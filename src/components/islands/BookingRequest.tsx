@@ -11,6 +11,7 @@ type Props = {
   email: string;
   instagramDm: string;
   maxGuests: number;
+  privateMin: number;
   minutesLabel: string; // "about {n} min"
 };
 
@@ -23,12 +24,13 @@ const fill = (s: string, v: Record<string, string | number>) => s.replace(/\{(\w
  * Booking request builder. There is no booking backend, so this composes a
  * clear request and hands it to the guest's email app or Instagram DM.
  */
-export default function BookingRequest({ t, lang, plans, email, instagramDm, maxGuests, minutesLabel }: Props) {
+export default function BookingRequest({ t, lang, plans, email, instagramDm, maxGuests, privateMin, minutesLabel }: Props) {
   const uid = useId();
   const [plan, setPlan] = useState<PlanId>("signature");
   const [date, setDate] = useState("");
   const [time, setTime] = useState<TimeKey>("flexible");
   const [guests, setGuests] = useState(2);
+  const [isPrivate, setPrivate] = useState(false);
   const [name, setName] = useState("");
   const [notes, setNotes] = useState("");
   const [minDate, setMinDate] = useState<string>();
@@ -41,6 +43,7 @@ export default function BookingRequest({ t, lang, plans, email, instagramDm, max
     setMinDate(today.toISOString().slice(0, 10));
 
     const fromHash = () => {
+      if (location.hash === "#book-private") setPrivate(true);
       const m = location.hash.match(/^#book-(signature|ippuku|kikicha)$/);
       if (m) setPlan(m[1] as PlanId);
     };
@@ -50,7 +53,11 @@ export default function BookingRequest({ t, lang, plans, email, instagramDm, max
   }, []);
 
   const current = plans.find((p) => p.id === plan)!;
-  const total = current.price * guests;
+  const perPersonTotal = current.price * guests;
+  const total = isPrivate ? Math.max(perPersonTotal, privateMin) : perPersonTotal;
+  const breakdown = `${current.name} · ${yen(current.price)} × ${guests}${
+    isPrivate ? ` · ${t.privateTag}${total > perPersonTotal ? ` (${yen(privateMin)}〜)` : ""}` : ""
+  }`;
 
   const prettyDate = useMemo(() => {
     if (!date) return t.flexibleDate;
@@ -63,7 +70,7 @@ export default function BookingRequest({ t, lang, plans, email, instagramDm, max
     }).format(d);
   }, [date, lang, t.flexibleDate]);
 
-  const planLabel = `${current.name}${lang === "ja" ? `（${current.ja}）` : ` (${current.ja})`} — ${yen(current.price)} × ${guests} = ${yen(total)}`;
+  const planLabel = `${current.name}${lang === "ja" ? `（${current.ja}）` : ` (${current.ja})`} — ${yen(current.price)} × ${guests}${isPrivate ? ` · ${t.privateTag}` : ""} = ${yen(total)}`;
   const message = t.message
     .map((line) =>
       fill(line, {
@@ -201,6 +208,18 @@ export default function BookingRequest({ t, lang, plans, email, instagramDm, max
           <span id={`${uid}-guests-hint`} className="field-hint">
             {t.guestsHint}
           </span>
+          <label className="mt-3 flex cursor-pointer items-start gap-3 text-sm">
+            <input
+              type="checkbox"
+              className="mt-0.5 size-4 accent-matcha"
+              checked={isPrivate}
+              onChange={(e) => setPrivate(e.target.checked)}
+            />
+            <span>
+              <span className="font-medium">{t.private}</span>
+              <span className="block text-muted">{fill(t.privateHint, { price: yen(privateMin) })}</span>
+            </span>
+          </label>
         </div>
 
         <div className="field">
@@ -240,7 +259,7 @@ export default function BookingRequest({ t, lang, plans, email, instagramDm, max
           </span>
         </div>
         <p className="-mt-3 text-right text-sm text-muted tabular-nums">
-          {current.name} · {yen(current.price)} × {guests}
+          {breakdown}
         </p>
         <div className="grid gap-3 sm:grid-cols-2">
           <a href={mailto} className="btn btn-primary w-full">

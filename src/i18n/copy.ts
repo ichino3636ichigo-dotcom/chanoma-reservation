@@ -98,6 +98,11 @@ const en = {
         ],
       },
     } satisfies Record<PlanId, { kind: string; summary: string; includes: string[] }>,
+    private: {
+      title: "Private session",
+      body: "Keep the tea room just for your group — a couple, a family or friends. Any plan, up to 4 guests, from {price} per session (if the per-person total is higher, that applies).",
+      cta: "Request a private session",
+    },
     offsite: {
       title: "Tea, wherever you are",
       body: "We can also bring the tea ceremony to you — at home, at a hotel or ryokan, for company culture training, or at an outdoor event. Timing and content are arranged around you.",
@@ -174,6 +179,9 @@ const en = {
     namePlaceholder: "e.g. Alex Smith",
     notes: "Anything we should know?",
     notesPlaceholder: "Dietary needs, accessibility, questions…",
+    private: "Private session — just our group",
+    privateHint: "The room is yours alone. From {price} per session.",
+    privateTag: "private",
     total: "Estimated total",
     sendEmail: "Send by email",
     sendInstagram: "Message on Instagram",
@@ -376,6 +384,11 @@ const ja: Copy = {
         ],
       },
     },
+    private: {
+      title: "貸切プラン",
+      body: "ご夫婦、ご家族、ご友人だけで茶室を貸切に。どのプランでも4名まで、1席 {price}〜（お一人様料金の合計がこれを上回る場合はそちらを適用）。",
+      cta: "貸切でリクエスト",
+    },
     offsite: {
       title: "出張サービス",
       body: "ご自宅、ホテル・旅館、会社の文化研修、屋外やイベント会場など、場所にとらわれず茶道を体験していただけます。時間や内容はご依頼に合わせて柔軟に対応します。",
@@ -442,6 +455,9 @@ const ja: Copy = {
     namePlaceholder: "例：山田 花子",
     notes: "ご要望など",
     notesPlaceholder: "アレルギー、足腰のこと、ご質問など",
+    private: "貸切にする（自分たちだけで）",
+    privateHint: "茶室をご一行だけでお使いいただけます。1席 {price}〜。",
+    privateTag: "貸切",
     total: "合計の目安",
     sendEmail: "メールで送る",
     sendInstagram: "Instagramで送る",

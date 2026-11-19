@@ -25,6 +25,12 @@ export const plans: { id: PlanId; name: string; ja: string; price: number; minut
   { id: "kikicha", name: "Kikicha", ja: "利き茶", price: 5500, minutes: 30 },
 ];
 
+/** Private session: the room for your group only. The total is at least this much per session. */
+export const privateMin = 30000;
+
+/** Off-site: the host fee covers about this many guests; each extra guest adds `perExtraGuest`. */
+export const offsite = { hostFrom: 30000, baseGuests: 10, perExtraGuest: 3000, toolRental: 20000 };
+
 export const fromPrice = Math.min(...plans.map((p) => p.price));
 
 export const yen = (n: number) => `¥${n.toLocaleString("en-US")}`;
