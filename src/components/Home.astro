@@ -69,8 +69,8 @@ const isJa = lang === "ja";
         <h1
           class="h-display mt-6 text-[clamp(2.6rem,6.2vw,4.75rem)] [:lang(ja)_&]:text-[clamp(2.1rem,5vw,3.6rem)]"
         >
-          {t.hero.title[0]}<br />
-          <span class="text-matcha italic [:lang(ja)_&]:not-italic">{t.hero.title[1]}</span>
+          {t.hero.title.slice(0, -1).map((line) => (<>{line}<br /></>))}
+          <span class="text-matcha italic [:lang(ja)_&]:not-italic">{t.hero.title.at(-1)}</span>
         </h1>
         <p class="mt-6 max-w-[34rem] text-lg leading-relaxed text-ink-2">{t.hero.lead}</p>
         <ul class="mt-8 flex flex-wrap gap-2">

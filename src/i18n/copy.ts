@@ -29,7 +29,7 @@ const en = {
   },
   hero: {
     eyebrow: "Tea ceremony & matcha tasting · Kyoto",
-    title: ["A quiet bowl of tea,", "above a flower shop in Kyoto."],
+    title: ["A hidden retreat in Kyoto,", "above a flower shop —", "a small tea room."],
     lead: "Join us in a tatami room on the third floor of Nishimura Flower Shop. Small groups of up to four, hosted in English — no experience needed.",
     facts: ["Up to 4 guests", "Hosted in English", "From {price} per person", "By reservation"],
     primary: "Request a booking",
@@ -315,7 +315,7 @@ const ja: Copy = {
   },
   hero: {
     eyebrow: "京都・茶道体験と抹茶の飲み比べ",
-    title: ["花屋の三階で、", "一服のお茶を。"],
+    title: ["京都の隠れ家", "お花屋さんの上の、", "ちいさな茶室。"],
     lead: "西村花店の三階にある和室で、少人数の茶道体験をおこなっています。最大4名、作法の知識は不要です。日本の方も、海外の方も、どうぞ気軽に。",
     facts: ["最大4名", "英語対応", "お一人様 {price}〜", "完全予約制"],
     primary: "予約をリクエスト",
