@@ -5,12 +5,12 @@ import type { Lang } from "./copy";
 
 const en = {
   meta: {
-    title: "Off-site tea ceremony in Kyoto — chanoma",
+    title: "Bespoke tea gatherings — off-site tea ceremony from Kyoto — chanoma",
     description:
       "chanoma brings the tea ceremony to your home, hotel or ryokan, company training or event. Table-and-chair (ryūrei) style, in English or Japanese.",
   },
   hero: {
-    eyebrow: "Off-site sessions",
+    eyebrow: "Bespoke tea gatherings",
     title: ["Tea ceremony,", "brought to you."],
     lead: "We bring the tea ceremony to your home, hotel or ryokan, company training or event. With the table-and-chair ryūrei style, any room can become a tea room — no tatami needed.",
     places: ["Homes", "Hotels & ryokan", "Company training", "Universities", "Events & outdoors"],
@@ -153,7 +153,7 @@ const en = {
   },
   form: {
     eyebrow: "Request",
-    title: "Ask about an off-site session",
+    title: "Ask about a bespoke tea gathering",
     lead: "Fill in what you know — we'll reply by email or Instagram with a suggestion and a quote. Nothing is booked until we confirm.",
     org: "Organisation (if any)",
     orgPlaceholder: "e.g. company, school, hotel",
@@ -177,13 +177,13 @@ const en = {
     copied: "Message copied — paste it into the Instagram chat.",
     copyFailed: "Couldn't copy automatically. Please select the message below and copy it.",
     preview: "Your message",
-    subject: "Off-site session request — {org}",
+    subject: "Bespoke tea gathering request — {org}",
     undecided: "not decided",
     none: "—",
     message: [
       "Hello chanoma,",
       "",
-      "I'd like to ask about an off-site tea ceremony session.",
+      "I'd like to ask about a bespoke tea gathering.",
       "",
       "Organisation: {org}",
       "Name: {name}",

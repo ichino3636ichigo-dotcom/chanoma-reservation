@@ -19,7 +19,7 @@ const en = {
     visit: "Visit",
     faq: "FAQ",
     story: "Our story",
-    offsite: "Off-site",
+    offsite: "Bespoke tea",
     book: "Book",
     menu: "Menu",
     close: "Close",
@@ -106,7 +106,7 @@ const en = {
     offsite: {
       title: "Tea, wherever you are",
       body: "We can also bring the tea ceremony to you — at home, at a hotel or ryokan, for company culture training, or at an outdoor event. Timing and content are arranged around you.",
-      cta: "See off-site sessions",
+      cta: "See bespoke tea gatherings",
     },
   },
   flow: {
@@ -251,7 +251,7 @@ const en = {
       },
       {
         q: "Can you come to us instead?",
-        a: "Yes. We offer off-site sessions at homes, hotels and ryokan, company trainings and events. Get in touch and we'll arrange it with you.",
+        a: "Yes. We offer bespoke tea gatherings at homes, hotels and ryokan, company trainings and events. Get in touch and we'll arrange it with you.",
       },
     ],
   },
